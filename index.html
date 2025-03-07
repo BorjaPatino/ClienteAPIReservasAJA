@@ -8,14 +8,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
     <meta name="description" content="">
-    <script src="js/login.js" defer></script> <!-- defer para que el js no se cargue hasta que no termine de cargarse todo el documento HTML -->
+    <script src="js/login.js" defer></script>
 
 </head>
 <body class="container mt-4">
 
 <h2 class="mb-4">Login App Gestión de Reservas</h2>
 <div class="mb-3">
-    <input class="form-control" type="text" id="username" placeholder="Usuario">
+    <input class="form-control" type="text" id="username" placeholder="email">
 </div>
 <div class="mb-3">
     <input class="form-control" type="text" id="password" placeholder="Password">
@@ -44,6 +44,10 @@
                     <div class="mb-3">
                         <label for="registerEmail" class="form-label">Correo electrónico</label>
                         <input type="email" class="form-control" id="registerEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerTelefono" class="form-label">Teléfono</label>
+                        <input type="text" class="form-control" id="registerTelefono" required>
                     </div>
                     <div class="mb-3">
                         <label for="registerPassword" class="form-label">Contraseña</label>

@@ -4,9 +4,9 @@ obtenerReservas();
 // Configurar la fecha mínima en fechaReserva
 document.addEventListener("DOMContentLoaded", () => {
     const fechaReserva = document.getElementById("fechaReserva");
-    const hoy = new Date().toISOString().split("T")[0]; // Obtener la fecha actual en formato YYYY-MM-DD
-    fechaReserva.setAttribute("min", hoy); // Establecer la fecha mínima
+    fechaReserva.removeAttribute("min");
 });
+
 
 ////////////// MANEJADORES DE EVENTOS //////////////
 
@@ -47,7 +47,7 @@ async function obtenerReservas() {
             throw new Error("No hay token, inicia sesión.");
         }
 
-        const response = await fetch("http://localhost:8080/reservas_todas", {
+        const response = await fetch("http://localhost:8080/mis_reservas", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -63,12 +63,12 @@ async function obtenerReservas() {
         console.log("Reservas obtenidas:", reservas);
 
         const tableBody = document.getElementById("tableBody");
-        tableBody.innerHTML = "";  // Limpiar la tabla antes de agregar nuevas filas
+        tableBody.innerHTML = "";
 
         reservas.forEach(reserva => {
             const row = document.createElement("tr");
 
-            const numeroPersonas = reserva.numeroPersonas || "No especificado";  // Si es null, mostramos "No especificado"
+            const numeroPersonas = reserva.numeroPersonas || "No especificado";
 
             row.innerHTML = `
                 <td>${reserva.nombreCliente}</td>
@@ -130,8 +130,9 @@ async function nuevaReserva() {
     const fecha = document.getElementById("fechaReserva").value;
     const hora = document.getElementById("horaReserva").value;
     const mesaId = document.getElementById("mesaReserva").value;
+    const numeroPersonas = document.getElementById("numeroPersonasReserva").value;
 
-    if (!fecha || !hora || !mesaId) {
+    if (!fecha || !hora || !mesaId || !numeroPersonas) {
         alert("Por favor, completa todos los campos antes de guardar la reserva.");
         return;
     }
@@ -139,7 +140,8 @@ async function nuevaReserva() {
     const reserva = {
         fecha: fecha,
         hora: hora,
-        mesa: { id: mesaId }
+        mesa: { id: mesaId },
+        numeroPersonas: parseInt(numeroPersonas)
     };
 
     console.log("Enviando reserva:", reserva); // Depuración
@@ -206,7 +208,7 @@ async function obtenerMesasDisponibles() {
 
         // Llenar el select de mesas
         const selectMesas = document.getElementById("mesaReserva");
-        selectMesas.innerHTML = ""; // Limpiar opciones anteriores
+        selectMesas.innerHTML = "";
 
         mesas.forEach(mesa => {
             const option = document.createElement("option");
@@ -221,7 +223,7 @@ async function obtenerMesasDisponibles() {
 }
 
 document.getElementById("logoutBtn").addEventListener("click", function () {
-    localStorage.removeItem("token"); // Eliminar el token
-    window.location.href = "index.html"; // Redirigir al login
+    localStorage.removeItem("token");
+    window.location.href = "index.html";
 });
 

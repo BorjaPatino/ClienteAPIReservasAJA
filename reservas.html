@@ -38,7 +38,7 @@
 <dialog class="container mb-3 mt-3" style="border: 1px solid black" id="nuevaReservaDialog">
     <h2>Nueva Reserva</h2>
     <div class="mb-3">
-        <input class="form-control" type="text" id="nombreReserva" placeholder="Nombre del Cliente">
+        <input class="form-control" type="text" id="nombreReserva" placeholder="email del Cliente">
     </div>
     <div class="mb-3">
         <input class="form-control" type="date" id="fechaReserva" min="">
@@ -51,6 +51,10 @@
         <select class="form-control" id="mesaReserva">
             <option value="">Selecciona una mesa</option>
         </select>
+    </div>
+    <div class="mb-3">
+        <label for="numeroPersonasReserva" class="form-label">Número de Personas</label>
+        <input class="form-control" type="number" id="numeroPersonasReserva" min="1" value="1">
     </div>
     <button class="btn btn-primary mb-3" id="nuevaReservaBtn">Guardar Reserva</button>
     <button class="btn btn-danger mb-3" id="cancelReservaBtn">Cerrar</button>

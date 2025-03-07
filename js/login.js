@@ -19,8 +19,8 @@ async function login() {
         }
 
         const data = await response.json();
-        localStorage.setItem("token", data.token);  // Guarda el token
-        localStorage.setItem("email", data.email);  // Guarda el email del usuario autenticado
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("email", data.email);
 
         location.href = "reservas.html";
     } catch (error) {
@@ -44,7 +44,8 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
     const username = document.getElementById("registerUsername").value;
     const email = document.getElementById("registerEmail").value;
     const password = document.getElementById("registerPassword").value;
-    const foto = ""; // Aquí puedes agregar lógica para manejar una foto si lo deseas
+    const telefono = document.getElementById("registerTelefono").value;
+    const foto = "";
 
     try {
         const response = await fetch("http://localhost:8080/auth/register", {
@@ -56,6 +57,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
                 username: username,
                 email: email,
                 password: password,
+                telefono: telefono,
                 foto: foto
             })
         });
